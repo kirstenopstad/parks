@@ -6,11 +6,11 @@ namespace ParksApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ParksApiController : ControllerBase
+public class ParksController : ControllerBase
 {
   private readonly ParksApiContext _db;
 
-  public ParksApiController(ParksApiContext db)
+  public ParksController(ParksApiContext db)
   {
     _db = db;
   }
@@ -83,13 +83,24 @@ public class ParksApiController : ControllerBase
         throw;
       }
     }
-    // return No Content
+    // return no content
     return NoContent();
   }
 
   // DELETE
   // DELETE api/parks/{id}
-  // [HttpDelete("{id}")]
+  [HttpDelete("{id}")]
+  public async Task<ActionResult> Delete(int id)
+  {
+    // look up park based on id
+    Park park = await _db.Parks.FindAsync(id);
+    // remove from parks entity
+    _db.Parks.Remove(park);
+    // async save changes
+    await _db.SaveChangesAsync();
+    // return no content
+    return NoContent();
+  }
 
   // Helper functions
   private bool ParkExists(int id)
