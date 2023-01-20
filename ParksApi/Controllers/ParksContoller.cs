@@ -54,9 +54,46 @@ public class ParksApiController : ControllerBase
 
   // UPDATE
   // PUT (OR PATCH) api/parks/{id}
-  // [HttpPut("{id}")]
+  [HttpPut("{id}")]
+  public async Task<ActionResult> Put(int id, Park park)
+  {
+    // ensure URL id matches park being updated
+    if (id != park.ParkId)
+    {
+      return BadRequest();
+    }
+    // Update entity
+    _db.Parks.Update(park);
+    // TRY save changes to db
+    try
+    {
+      _db.SaveChanges();
+    }
+    // CATCH 
+    catch
+    {
+      if (!ParkExists(id))
+      {
+        // if park doesn't exist, return not found
+        return NotFound();
+      }
+      else
+      {
+        // else throw
+        throw;
+      }
+    }
+    // return No Content
+    return NoContent();
+  }
 
   // DELETE
   // DELETE api/parks/{id}
   // [HttpDelete("{id}")]
+
+  // Helper functions
+  private bool ParkExists(int id)
+  {
+    return _db.Parks.Any(park => park.ParkId == id);
+  } 
 }
