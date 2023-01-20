@@ -39,10 +39,10 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 
 ### MVP (Minimum Viable Product)
 * ✅ Application includes CRUD functionality and successfully returns responses to API calls.
-* README thoroughly describes all endpoints along with parameters that can be used.
+* ✅ README thoroughly describes all endpoints along with parameters that can be used.
 * Application includes a best effort at implementing at least one of the further exploration objectives: authentication, __versioning__, pagination, or CORS. 
 * README includes specific documentation on further exploration: what it is and how to use it.
-* Build files and sensitive information are included in .gitignore file and is not to be tracked by * Git, and includes instructions on how to create the appsettings.json and set up the project.
+* ✅ Build files and sensitive information are included in .gitignore file and is not to be tracked by * Git, and includes instructions on how to create the appsettings.json and set up the project.
 * Project is in a polished, portfolio-quality state.
 * The prompt’s required functionality and baseline project requirements are in place by the deadline.
 
@@ -89,20 +89,20 @@ $ dotnet restore
 ## API Documentation
 ### __Endpoints__
 ```
- GET http://localhost:5000/api/parks
- GET http://localhost:5000/api/parks/{id}
- POST http://localhost:5000/api/parks
- PUT http://localhost:5000/api/parks/{id}
- DELETE http://localhost:5000/api/parks/{id}
+ GET http://localhost:5000/v2/api/parks
+ GET http://localhost:5000/v2/api/parks/{id}
+ POST http://localhost:5000/v2/api/parks
+ PUT http://localhost:5000/v2/api/parks/{id}
+ DELETE http://localhost:5000/v2/api/parks/{id}
  ```
 Notes: 
 * The {id} value in the URL is a **variable** and should be replaced with the __id number__ of the park the user wants to PUT or DELETE
-* ```GET http://localhost:5000/api/parks``` Returns a **collection** of parks
-* ```GET http://localhost:5000/api/parks/{id}``` Returns a single park
+* ```GET http://localhost:5000/v2/api/parks``` Returns a **collection** of parks
+* ```GET http://localhost:5000/v2/api/parks/{id}``` Returns a single park
 
 
 ### __Queries__
-For GET http://localhost:5000/api/parks
+For GET http://localhost:5000/v2/api/parks
 
 Parameter   | Type  | Required | Description | 
 |:---------|:---------:|:---------:|:---------|
@@ -116,38 +116,26 @@ City | string | Not Required | Returns parks with matching Y value
 #### __Example Queries__
 The following query will return all National parks, indicated by the parkType value of 1:
 
-``` GET http://localhost:5000/api/parks?parkType=1 ```
+``` GET http://localhost:5000/v2/api/parks?parkType=1 ```
 The following query will return all State parks, indicated by the parkType value of 2:
 
-``` GET http://localhost:5000/api/parks?parkType=2 ```
+``` GET http://localhost:5000/v2/api/parks?parkType=2 ```
 The following query will return all parks within a given state, indicated by the state value of "CA":
 
-``` GET http://localhost:5000/api/parks?state=ca ```
+``` GET http://localhost:5000/v2/api/parks?state=ca ```
 
-The following query will return all parks with the city value of "Florence":
+The following query will return all parks with the city value of "Big Sur":
 
-```GET http://localhost:5000/api/parks?country=florence```
-
-The following query will return all parks sorted from highest rating to lowest rating:
-
-```GET http://localhost:5000/api/reviews?sortByRating=true```
-
-<!-- The following query will return all reviews by most popular destinations determined by number of reviews:
-
-```GET http://localhost:5000/api/v2/reviews?sortByDescriptionCount=true```
-
-The following query will return a random review:
-
-```GET http://localhost:5000/api/v2/reviews?random=true```
+```GET http://localhost:5000/v2/api/parks?city=big sur```
 
 It's possible to include multiple query strings by separating them with an &:
 
-``` GET http://localhost:5000/api/v2/reviews?country=italy&city=florence ``` -->
+``` GET http://localhost:5000/v2/api/v2/reviews?parkType=1&state=ca ```
 
 ### __Endpoints that require userName__
-<!-- PUT http://localhost:5000/api/v2/reviews/{id}
+<!-- PUT http://localhost:5000/v2/api/v2/reviews/{id}
 
-DELETE http://localhost:5000/api/v2/reviews/{id}
+DELETE http://localhost:5000/v2/api/v2/reviews/{id}
 
 
 Parameter   | Type  | Required | Description | 
@@ -159,7 +147,7 @@ userName | string | Required | A review may only be deleted if userName matches 
 #### __POST Requests require a body in JSON format that includes all fields.__
 Example:
 
-```POST http://localhost:5000/api/parks```
+```POST http://localhost:5000/v2/api/parks```
 ```
     {
         "parkId": 7,
@@ -174,7 +162,7 @@ Example:
 #### __PUT Requests require a body in JSON format that includes all fields.__
 Example:
 
-```PUT http://localhost:5000/api/parks/{id}```
+```PUT http://localhost:5000/v2/api/parks/{id}```
 ```
     {
         "parkId": 7, 
@@ -187,17 +175,18 @@ Example:
 ```
 
 
-### __Note on Versioning__
-<!-- There are two versions available for the ProjectApi. Version 2.0 is the most up to date, and includes the 'random' endpoint. To revert back to version 1.0, simply replace v2 in the endpoint with v1.
+### __Versions__
+There are two versions available of the ParksApi. Version 2.0 is the most recent. To revert back to version 1.0, simply replace v2 in the endpoint with v1.
+
 For example: 
 
 ```
 Version 2.0
-GET http://localhost:5000/api/v2/reviews
+GET http://localhost:5000/v2/api/v2/parks
 
 Version 1.0
-GET http://localhost:5000/api/v1/reviews
-``` -->
+GET http://localhost:5000/v1/api/v1/parks
+```
 
 
 ## Known Bugs
