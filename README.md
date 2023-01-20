@@ -1,4 +1,4 @@
-![Header Photo](HEADER_PHOTO_URL)
+<!-- ![Header Photo](HEADER_PHOTO_URL) -->
 # Parks Lookup API 
 ### An API for state and national parks
 #### By Kirsten Opstad 
@@ -54,6 +54,10 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 <!-- ![Screenshot of Databases](imagelink) -->
 <!-- [Link to operational site](http://www.kirstenopstad.github.com/<REPOSITORY NAME>) -->
 
+***
+## Project Outline
+### Database Schema
+![Image of database schema](Parks/wwwroot/images/schema0.png)
 ***
 ## Setup Installation Requirements
 
