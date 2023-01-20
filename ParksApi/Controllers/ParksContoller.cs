@@ -21,10 +21,26 @@ public class ParksApiController : ControllerBase
   // async function returning an action result that returns an enumerable collection of type Park called Get()
   public async Task<ActionResult<IEnumerable<Park>>> Get()
   {
+    // TODO: Query by ParkType
+    // TODO: Query by State
+    // TODO: Query by City
     return await _db.Parks.ToListAsync();
   }
+
   // GET (single) api/parks/{id}
   [HttpGet("{id}")]
+  public async Task<ActionResult<Park>> GetPark(int id)
+  {
+    Park park = await _db.Parks.FindAsync(id);
+
+    // return not found if query returns null
+    if (park == null)
+    {
+      return NotFound();
+    }
+
+    return park;
+  }
 
   // CREATE
   // POST api/parks
