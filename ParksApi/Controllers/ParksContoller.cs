@@ -19,12 +19,25 @@ public class ParksController : ControllerBase
   // GET (list) api/parks
   [HttpGet]
   // async function returning an action result that returns an enumerable collection of type Park called Get()
-  public async Task<ActionResult<IEnumerable<Park>>> Get()
+  public async Task<ActionResult<IEnumerable<Park>>> Get(int parkType, string state, string city)
   {
-    // TODO: Query by ParkType
-    // TODO: Query by State
-    // TODO: Query by City
-    return await _db.Parks.ToListAsync();
+    IQueryable<Park> query = _db.Parks.AsQueryable();
+    // Query by park type (national / state)
+    if (parkType != null)
+    {
+      query = query.Where(park => park.ParkTypeId == parkType);
+    }
+    // Query by State
+    if (state != null)
+    {
+      query = query.Where(park => park.State == state);
+    }
+    // Query by City
+    if (city != null)
+    {
+      query = query.Where(park => park.City == city);
+    }
+    return await query.ToListAsync();
   }
 
   // GET (single) api/parks/{id}
