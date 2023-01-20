@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ParksApi.Migrations
+namespace Parks.Migrations
 {
-    public partial class Initial : Migration
+    public partial class RebaseAndSeed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,29 @@ namespace ParksApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "ParkType",
+                columns: new[] { "ParkTypeId", "Type" },
+                values: new object[] { 1, "National" });
+
+            migrationBuilder.InsertData(
+                table: "ParkType",
+                columns: new[] { "ParkTypeId", "Type" },
+                values: new object[] { 2, "State" });
+
+            migrationBuilder.InsertData(
+                table: "Parks",
+                columns: new[] { "ParkId", "City", "Name", "ParkTypeId", "State" },
+                values: new object[,]
+                {
+                    { 1, "Grand Canyon National Park", "Grand Canyon", 1, "AZ" },
+                    { 2, "Yosemite National Park", "Yosemite", 1, "CA" },
+                    { 3, "Acadia National Park", "Acadia", 1, "ME" },
+                    { 4, "Big Sur", "Pfieffer Big Sur", 2, "CA" },
+                    { 5, "Big Sur", "Julia Pfieffer Burns", 2, "CA" },
+                    { 6, "Big Sur", "Andrew Molera", 2, "CA" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Parks_ParkTypeId",
