@@ -21,9 +21,14 @@ public class ParksContext : DbContext
     builder.Entity<Park>()
       .HasData(
         // National Parks
-        new ParkType { Name = "Grand Canyon", State = "AZ", City = "Grand Canyon Village", TypeId = 1},
+        // TODO: Use NPS API to seed this API
+        new ParkType { Name = "Grand Canyon", State = "AZ", City = "Grand Canyon National Park", TypeId = 1},
+        new ParkType { Name = "Yosemite", State = "CA", City = "Yosemite National Park", TypeId = 1},
+        new ParkType { Name = "Acadia", State = "ME", City = "Acadia National Park", TypeId = 1},
         // State Parks
         new ParkType { Name = "Pfieffer Big Sur", State = "CA", City = "Big Sur", TypeId = 2},
+        new ParkType { Name = "Julia Pfieffer Burns", State = "CA", City = "Big Sur", TypeId = 2},
+        new ParkType { Name = "Andrew Molera", State = "CA", City = "Big Sur", TypeId = 2},
       );
   }
 }
