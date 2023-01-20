@@ -23,7 +23,7 @@ public class ParksController : ControllerBase
   {
     IQueryable<Park> query = _db.Parks.AsQueryable();
     // Query by park type (national / state)
-    if (parkType != null)
+    if (parkType != 0)
     {
       query = query.Where(park => park.ParkTypeId == parkType);
     }
@@ -80,7 +80,7 @@ public class ParksController : ControllerBase
     // TRY save changes to db
     try
     {
-      _db.SaveChanges();
+      _db.SaveChangesAsync();
     }
     // CATCH 
     catch
