@@ -40,8 +40,8 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 ### MVP (Minimum Viable Product)
 * ✅ Application includes CRUD functionality and successfully returns responses to API calls.
 * ✅ README thoroughly describes all endpoints along with parameters that can be used.
-* Application includes a best effort at implementing at least one of the further exploration objectives: authentication, __versioning__, pagination, or CORS. 
-* README includes specific documentation on further exploration: what it is and how to use it.
+* ✅ Application includes a best effort at implementing at least one of the further exploration objectives: authentication, __versioning__, pagination, or CORS. 
+* ✅ README includes specific documentation on further exploration: what it is and how to use it.
 * ✅ Build files and sensitive information are included in .gitignore file and is not to be tracked by * Git, and includes instructions on how to create the appsettings.json and set up the project.
 * Project is in a polished, portfolio-quality state.
 * The prompt’s required functionality and baseline project requirements are in place by the deadline.
@@ -57,21 +57,21 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 ***
 ## Project Outline
 ### Database Schema
-![Image of database schema](Parks/wwwroot/images/schema0.png)
+![Image of database schema](ParksApi/wwwroot/images/schema0.png)
 ***
 ## Setup Installation Requirements
 
 ### Open project
-1. Navigate to the `Parks` directory.
+1. Navigate to the `ParksApi` directory.
 2. Create a file named `appsettings.json` with the following code. Be sure to update the Default Connection to your MySQL credentials.
 ```
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=parks;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
+    "DefaultConnection": "Server=localhost;Port=3306;database=Api;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
   }
 }
 ```
-3. Install dependencies within the `Parks` directory
+3. Install dependencies within the `ParksApi` directory
 ```
 $ dotnet restore
 ```
@@ -117,9 +117,11 @@ City | string | Not Required | Returns parks with matching Y value
 The following query will return all National parks, indicated by the parkType value of 1:
 
 ``` GET http://localhost:5000/v2/api/parks?parkType=1 ```
+
 The following query will return all State parks, indicated by the parkType value of 2:
 
 ``` GET http://localhost:5000/v2/api/parks?parkType=2 ```
+
 The following query will return all parks within a given state, indicated by the state value of "CA":
 
 ``` GET http://localhost:5000/v2/api/parks?state=ca ```
@@ -132,7 +134,7 @@ It's possible to include multiple query strings by separating them with an &:
 
 ``` GET http://localhost:5000/v2/api/v2/reviews?parkType=1&state=ca ```
 
-### __Endpoints that require userName__
+<!-- ### __Endpoints that require userName__ -->
 <!-- PUT http://localhost:5000/v2/api/v2/reviews/{id}
 
 DELETE http://localhost:5000/v2/api/v2/reviews/{id}
