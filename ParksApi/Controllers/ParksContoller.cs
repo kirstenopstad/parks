@@ -45,13 +45,18 @@ public class ParksApiController : ControllerBase
   // CREATE
   // POST api/parks
   [HttpPost]
+  public async Task<ActionResult<Park>> Post(Park park)
+  {
+    _db.Parks.Add(park);
+    await _db.SaveChangesAsync();
+    return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
+  }
 
   // UPDATE
   // PUT (OR PATCH) api/parks/{id}
-  [HttpPut("{id}")]
+  // [HttpPut("{id}")]
 
   // DELETE
   // DELETE api/parks/{id}
-  [HttpDelete("{id}")]
-  
+  // [HttpDelete("{id}")]
 }
