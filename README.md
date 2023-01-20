@@ -102,30 +102,37 @@ Notes:
 
 
 ### __Queries__
-<!-- For GET http://localhost:5000/api/v2/parks
+For GET http://localhost:5000/api/parks
 
 Parameter   | Type  | Required | Description | 
 |:---------|:---------:|:---------:|:---------|
-X | string | Not Required | Returns parks with matching X value
-Y | string | Not Required | Returns parks with matching Y value
-SortA | bool | Not Required | Sorts parks based on criteria
-SortB | bool | Not Required | Sorts parks by criteria
-random | bool | Not Required | Returns a random park -->
+parkType | int | Not Required | Returns parks with matching parkType value (parkType=1 for National, parkType=2 for State)
+State | string | Not Required | Returns parks with matching state value
+City | string | Not Required | Returns parks with matching Y value
+<!-- SortA | bool | Not Required | Sorts parks based on criteria -->
+<!-- SortB | bool | Not Required | Sorts parks by criteria -->
+<!-- random | bool | Not Required | Returns a random park -->
 
 #### __Example Queries__
-<!-- The following query will return all reviews with the country value of "Mexico":
+The following query will return all National parks, indicated by the parkType value of 1:
 
-``` GET http://localhost:5000/api/v2/reviews?country=mexico ```
+``` GET http://localhost:5000/api/parks?parkType=1 ```
+The following query will return all State parks, indicated by the parkType value of 2:
 
-The following query will return all reviews with the city value of "Florence":
+``` GET http://localhost:5000/api/parks?parkType=2 ```
+The following query will return all parks within a given state, indicated by the state value of "CA":
 
-```GET http://localhost:5000/api/v2/reviews?country=florence```
+``` GET http://localhost:5000/api/parks?state=ca ```
 
-The following query will return all reviews sorted from highest rating to lowest rating:
+The following query will return all parks with the city value of "Florence":
 
-```GET http://localhost:5000/api/v2/reviews?sortByRating=true```
+```GET http://localhost:5000/api/parks?country=florence```
 
-The following query will return all reviews by most popular destinations determined by number of reviews:
+The following query will return all parks sorted from highest rating to lowest rating:
+
+```GET http://localhost:5000/api/reviews?sortByRating=true```
+
+<!-- The following query will return all reviews by most popular destinations determined by number of reviews:
 
 ```GET http://localhost:5000/api/v2/reviews?sortByDescriptionCount=true```
 
