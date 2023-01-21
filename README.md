@@ -23,7 +23,7 @@
 * MySQL
 * LINQ
 * Swagger
-
+* JWTBearer
 
 ***
 ## Description
