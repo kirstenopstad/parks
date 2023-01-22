@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(options =>
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            // Can have any values??
+            // represents the receiver of the incoming token or the resource that the token grants access to
             ValidAudience = "https://localhost:5001",
             // Can have any values??
             ValidIssuer = "https://localhost:5001",
