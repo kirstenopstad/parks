@@ -41,9 +41,9 @@ builder.Services.AddAuthentication(options =>
             ValidateIssuer = true,
             ValidateAudience = true,
             // Can have any values??
-            ValidAudience = "https://www.yogihosting.com",
+            ValidAudience = "https://localhost:5001",
             // Can have any values??
-            ValidIssuer = "https://www.yogihosting.com",
+            ValidIssuer = "https://localhost:5001",
             ClockSkew = TimeSpan.Zero,// It forces tokens to expire exactly at token expiration time instead of 5 minutes later
             // KO Security Key
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IlanaMadonnaRihanna"))
