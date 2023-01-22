@@ -1,4 +1,4 @@
-using ParksClient.Models;
+using ParksApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,15 +14,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ParksClient.Controllers;
+namespace ParksApi.Controllers;
 
-public class CallAPIController : Controller
+public class UsersController : Controller
 {
-  public IActionResult Index(string message)
-  {
-      ViewBag.Message = message;
-      return View();
-  }
+//   public IActionResult Index(string message)
+//   {
+//       ViewBag.Message = message;
+//       return View();
+//   }
   
   [HttpPost]
   public IActionResult Index(string username, string password)
@@ -36,7 +36,7 @@ public class CallAPIController : Controller
         new Claim(ClaimTypes.Role, loginUser.Role)
       };
 
-        var accessToken = GenerateJSONWebToken(claims);
+      var accessToken = GenerateJSONWebToken();
       SetJWTCookie(accessToken);
   
       return RedirectToAction("GetParks");
@@ -51,8 +51,8 @@ public class CallAPIController : Controller
           issuer: "https://localhost:5001",
           audience: "https://localhost:5001",
           expires: DateTime.Now.AddHours(3),
-          signingCredentials: credentials,
-          claims: claims
+          signingCredentials: credentials
+        //   claims: claims
           );
   
       return new JwtSecurityTokenHandler().WriteToken(token);
@@ -94,15 +94,15 @@ public class CallAPIController : Controller
       }
   
       return View(parkList);
+  }
 
-      public List<Users> CreateDummyUsers()
-      {
-        List<Users> userList = new List<Users> {
-            new Users { Username = "jack", Password = "jack", Role = "Admin" },
-            new Users { Username = "donald", Password = "donald", Role = "Manager" },
-            new Users { Username = "thomas", Password = "thomas", Role = "Developer" }
-        };
-        return userList;
-      }
+  public List<Users> CreateDummyUsers()
+  {
+      List<Users> userList = new List<Users> {
+        new Users { Username = "jack", Password = "jack", Role = "Admin" },
+        new Users { Username = "donald", Password = "donald", Role = "Manager" },
+        new Users { Username = "thomas", Password = "thomas", Role = "Developer" }
+      };
+      return userList;
   }
 }
