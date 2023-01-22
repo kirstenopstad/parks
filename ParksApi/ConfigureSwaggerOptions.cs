@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
+using ParksApi.Models;
 
 public class ConfigureSwaggerOptions
     : IConfigureNamedOptions<SwaggerGenOptions>
@@ -27,7 +28,34 @@ public class ConfigureSwaggerOptions
             options.SwaggerDoc(
                 description.GroupName,
                 CreateVersionInfo(description));
+            
         }
+
+        // add JWT Bearer to Swagger
+        options.AddSecurityDefinition(JwtAuthenticationDefaults.AuthenticationScheme,     
+        new OpenApiSecurityScheme
+        {
+            Description = "JWT Authorization header using the Bearer scheme.",
+            Name = JwtAuthenticationDefaults.HeaderName, // Authorization
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer"
+        });
+
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = JwtAuthenticationDefaults.AuthenticationScheme
+                    }
+                },
+                new List<string>()
+            }
+        });
     }
 
     /// <summary>

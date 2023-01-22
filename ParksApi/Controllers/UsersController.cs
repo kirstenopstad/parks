@@ -13,16 +13,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace ParksApi.Controllers;
 
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("2.0")]
+[ApiController]
 public class UsersController : Controller
 {
-//   public IActionResult Index(string message)
-//   {
-//       ViewBag.Message = message;
-//       return View();
-//   }
   
   [HttpPost]
   public IActionResult Index(string username, string password)
