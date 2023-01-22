@@ -24,7 +24,6 @@
 * LINQ
 * Swagger
 
-
 ***
 ## Description
 
@@ -34,13 +33,14 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 ## Objectives
 ### Goals
 1. Meet MVP
-2. [Stretch #1] Add front end MVC app to consume API
-3. [Stretch #2] Add additional endpoint
+2. [Stretch] Add functionality to call on NPS API to seed db
+2. [Stretch] Add front end MVC app to consume API
+3. [Stretch] Add additional endpoint
 
 ### MVP (Minimum Viable Product)
 * ✅ Application includes CRUD functionality and successfully returns responses to API calls.
 * ✅ README thoroughly describes all endpoints along with parameters that can be used.
-* ✅ Application includes a best effort at implementing at least one of the further exploration objectives: __authentication__, __versioning__, pagination, or CORS. 
+* ✅ Application includes a best effort at implementing at least one of the further exploration objectives: authentication, __versioning__, pagination, or CORS. 
 * ✅ README includes specific documentation on further exploration: what it is and how to use it.
 * ✅ Build files and sensitive information are included in .gitignore file and is not to be tracked by * Git, and includes instructions on how to create the appsettings.json and set up the project.
 * Project is in a polished, portfolio-quality state.
