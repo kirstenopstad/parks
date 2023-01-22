@@ -1,3 +1,8 @@
+using System.Collections.Generic;
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace ParksApi.Models;
 
 public class Park
