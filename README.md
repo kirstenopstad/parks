@@ -33,8 +33,8 @@ A student project demonstrating knowledge of building RESTful APIs. This is an A
 ***
 ## Objectives
 ### Goals
-1. Meet MVP
-2. [Stretch #1] Add front end MVC app to consume API
+1. ✅ Meet MVP
+2. ✅ [Stretch #1] Add front end MVC app to consume API
 3. [Stretch #2] Add additional endpoint
 
 ### MVP (Minimum Viable Product)
