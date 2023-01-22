@@ -2,6 +2,10 @@ using ParksApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApiExplorer; // added for versioning
 using Microsoft.AspNetCore.Mvc.Versioning; // added for versioning
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,31 @@ builder.Services.AddDbContext<ParksApiContext>(
 
 // Add controller
 builder.Services.AddControllers();
+
+// Add Authentication with JWT Bearer
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            // Can have any values??
+            ValidAudience = "https://www.yogihosting.com",
+            // Can have any values??
+            ValidIssuer = "https://www.yogihosting.com",
+            ClockSkew = TimeSpan.Zero,// It forces tokens to expire exactly at token expiration time instead of 5 minutes later
+            // KO Security Key
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("IlanaMadonnaRihanna"))
+        };
+    });
 
 // Add versioning capabilities
 builder.Services.AddApiVersioning(opt =>
@@ -70,6 +99,8 @@ else
   app.UseHttpsRedirection();
 }
 
+// app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
