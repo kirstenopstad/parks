@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace ParksApi.Controllers;
 
 [Route("api/v{version:apiVersion}/[controller]")]
-[ApiVersion("2.0")]
+[ApiVersion("2.1")]
 [ApiController]
 public class UsersController : Controller
 {
