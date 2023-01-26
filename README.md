@@ -89,20 +89,20 @@ $ dotnet restore
 ## API Documentation
 ### __Endpoints__
 ```
- GET http://localhost:5000/v2/api/parks
- GET http://localhost:5000/v2/api/parks/{id}
- POST http://localhost:5000/v2/api/parks
- PUT http://localhost:5000/v2/api/parks/{id}
- DELETE http://localhost:5000/v2/api/parks/{id}
+ GET http://localhost:5000/api/v2/v2/parks
+ GET http://localhost:5000/api/v2/parks/{id}
+ POST http://localhost:5000/api/v2/parks
+ PUT http://localhost:5000/api/v2/parks/{id}
+ DELETE http://localhost:5000/api/v2/parks/{id}
  ```
 Notes: 
 * The {id} value in the URL is a **variable** and should be replaced with the __id number__ of the park the user wants to PUT or DELETE
-* ```GET http://localhost:5000/v2/api/parks``` Returns a **collection** of parks
-* ```GET http://localhost:5000/v2/api/parks/{id}``` Returns a single park
+* ```GET http://localhost:5000/api/v2/parks``` Returns a **collection** of parks
+* ```GET http://localhost:5000/api/v2/parks/{id}``` Returns a single park
 
 
 ### __Queries__
-For GET http://localhost:5000/v2/api/parks
+For GET http://localhost:5000/api/v2/parks
 
 Parameter   | Type  | Required | Description | 
 |:---------|:---------:|:---------:|:---------|
@@ -116,28 +116,28 @@ City | string | Not Required | Returns parks with matching Y value
 #### __Example Queries__
 The following query will return all National parks, indicated by the parkType value of 1:
 
-``` GET http://localhost:5000/v2/api/parks?parkType=1 ```
+``` GET http://localhost:5000/api/v2/parks?parkType=1 ```
 
 The following query will return all State parks, indicated by the parkType value of 2:
 
-``` GET http://localhost:5000/v2/api/parks?parkType=2 ```
+``` GET http://localhost:5000/api/v2/parks?parkType=2 ```
 
 The following query will return all parks within a given state, indicated by the state value of "CA":
 
-``` GET http://localhost:5000/v2/api/parks?state=ca ```
+``` GET http://localhost:5000/api/v2/parks?state=ca ```
 
 The following query will return all parks with the city value of "Big Sur":
 
-```GET http://localhost:5000/v2/api/parks?city=big sur```
+```GET http://localhost:5000/api/v2/parks?city=big sur```
 
 It's possible to include multiple query strings by separating them with an &:
 
-``` GET http://localhost:5000/v2/api/v2/reviews?parkType=1&state=ca ```
+``` GET http://localhost:5000/api/v2/reviews?parkType=1&state=ca ```
 
 <!-- ### __Endpoints that require userName__ -->
-<!-- PUT http://localhost:5000/v2/api/v2/reviews/{id}
+<!-- PUT http://localhost:5000/api/v2/reviews/{id}
 
-DELETE http://localhost:5000/v2/api/v2/reviews/{id}
+DELETE http://localhost:5000/api/v2/reviews/{id}
 
 
 Parameter   | Type  | Required | Description | 
@@ -149,32 +149,31 @@ userName | string | Required | A review may only be deleted if userName matches 
 #### __POST Requests require a body in JSON format that includes all fields.__
 Example:
 
-```POST http://localhost:5000/v2/api/parks```
+```POST http://localhost:5000/api/v2/parks```
 ```
     {
-        "parkId": 7,
         "name": "Joshua Tree",
         "state": "CA",
         "city": "Joshua Tree National Park",
-        "parkTypeId": 1,
-        "type": null
+        "parkTypeId": 1
     }
 ```
+__Note: that the value for "parkTypeId" MUST be an int. A value of 1 indicates National Park a value of 2 indicates a State Park.__
 
 #### __PUT Requests require a body in JSON format that includes all fields.__
 Example:
 
-```PUT http://localhost:5000/v2/api/parks/{id}```
+```PUT http://localhost:5000/api/v2/parks/{id}```
 ```
     {
         "parkId": 7, 
         "name": "Toshua Tree",
         "state": "MA",
         "city": "Toshua Tree National Park",
-        "parkTypeId": 1,
-        "type": null
+        "parkTypeId": 1
     }
 ```
+__Note: that the value for "parkTypeId" MUST be an int. A value of 1 indicates National Park a value of 2 indicates a State Park.__
 
 
 ### __Versions__
@@ -184,10 +183,10 @@ For example:
 
 ```
 Version 2.0
-GET http://localhost:5000/v2/api/v2/parks
+GET http://localhost:5000/api/v2/parks
 
 Version 1.0
-GET http://localhost:5000/v1/api/v1/parks
+GET http://localhost:5000/api/v1/parks
 ```
 
 
