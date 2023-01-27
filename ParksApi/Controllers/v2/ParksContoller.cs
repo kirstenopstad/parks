@@ -22,7 +22,8 @@ public class ParksController : ControllerBase
   // async function returning an action result that returns an enumerable collection of type Park called Get()
   public async Task<ActionResult<IEnumerable<Park>>> Get(int parkType, string state, string city)
   {
-    IQueryable<Park> query = _db.Parks.AsQueryable();
+    IQueryable<Park> query = _db.Parks.Include(m => m.Type).AsQueryable();
+
     // Query by park type (national / state)
     if (parkType != 0)
     {
@@ -45,7 +46,8 @@ public class ParksController : ControllerBase
   [HttpGet("{id}")]
   public async Task<ActionResult<Park>> GetPark(int id)
   {
-    Park park = await _db.Parks.FindAsync(id);
+    Park park = await _db.Parks.Include(m => m.Type)
+                               .FirstOrDefaultAsync(m => m.ParkId == id);
 
     // return not found if query returns null
     if (park == null)
